@@ -9,22 +9,10 @@ private:
     Node* next;
 public:
     /* Constructors */
-    Node() {
-        this->data = 0;
-        this->next = NULL;
-    }
-    Node(int data) {
-        this->data = data;
-        this->next = NULL;
-    }
-    Node(Node* next) {
-        this->data = 0;
-        this->next = next;
-    }
-    Node(int data, Node* next) {
-        this->data = data;
-        this->next = next;
-    }
+    Node();
+    Node(int data);
+    Node(Node* next);
+    Node(int data, Node* next);
 
     /* Getters */
     int getData() const { return this->data; }
@@ -34,5 +22,24 @@ public:
     void setData(int data) { this->data = data; }
     void setNext(Node* next) { this->next = next; }
 };
+
+Node::Node() {
+    this->data = 0;
+    this->next = NULL;
+}
+Node::Node(int data) {
+    this->data = data;
+    this->next = NULL;
+}
+Node::Node(Node* next) {
+    this->data = 0;
+    this->next = next;
+}
+Node::Node(int data, Node* next) {
+    this->data = data;
+    this->next = next;
+}
+
+
 
 #endif

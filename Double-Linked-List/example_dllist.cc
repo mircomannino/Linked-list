@@ -7,9 +7,11 @@ int main() {
     DLList myList;
 
     /* Add element test */
-    myList.addHead(10);
-    myList.addHead(20);
-    myList.addTail(30);
+    myList.pushFront(10);
+    myList.pushFront(20);
+    myList.pushBack(30);
+    myList.pushBack(40);
+    myList.pushFront(50);
     cout << "Element added correctly\n";
 
     /* Print test*/
@@ -20,6 +22,29 @@ int main() {
     cout << "\nPrint test - From tail (30, 10, 20):\n";
     myList.printFromTail();
 
+
+    /* Pop test */
+    cout << "\nPopFront test:\n";
+    int dataFront = myList.popFront();
+    if(dataFront != -1) {
+        cout << dataFront << endl;
+    } else {
+        cout << "Can not pop from the head\n";
+    }
+    cout << "Updated list:\n";
+    myList.printFromHead();
+
+
+    /* Pop test */
+    cout << "\nPopBack test:\n";
+    int dataBack = myList.popBack();
+    if(dataBack != -1) {
+        cout << dataBack << endl;
+    } else {
+        cout << "Can not pop from the tail\n";
+    }
+    cout << "Updated list:\n";
+    myList.printFromHead();
 
     return 0;
 }

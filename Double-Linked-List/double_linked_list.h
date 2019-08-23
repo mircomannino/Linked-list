@@ -10,68 +10,110 @@ private:
     NodeDouble* head;
     NodeDouble* tail;
 public:
-    DLList() {
-        this->head = NULL;
-        this->tail = NULL;
-    }
+    /* Constructor */
+    DLList();
 
-    /* Add a node in the head */
-    void addHead(int data) {
-        NodeDouble* newNode = new NodeDouble(data);
-        if(((this->head) == NULL)) {
-            this->head = newNode;
-            this->tail = newNode;
-        } else {
-            NodeDouble* headCopy = this->head;
-            newNode->setNext(NULL);
-            newNode->setPrev(this->head);
-            this->head = newNode;
-            headCopy->setNext(newNode);
-        }
+    /* Push methods */
+    void pushFront(int data);       // Add node in the head
+    void pushBack(int data);        // Add node in the tail
 
-    }
+    /* Pop methods */
+    int popFront();                 // Delete node from the head
+    int popBack();                  // Delete node from the tail
 
-    /* Add a node in the tail */
-    void addTail(int data) {
-        NodeDouble* newNode = new NodeDouble(data);
-        if(((this->head) == NULL)) {
-            this->head = newNode;
-            this->tail = newNode;
-        } else {
-            NodeDouble* tailCopy = this->tail;
-            newNode->setNext(this->tail);
-            newNode->setPrev(NULL);
-            this->tail = newNode;
-            tailCopy->setPrev(newNode);
-        }
-    }
+    /* Erase methods */
+    void eraseFront();              // Erase the head node
+    void eraseBack();               // Erase the tail node
 
-
-    /* Print from the head */
-    bool printFromHead() {
-        if(((this->head) == NULL) && ((this->head) == NULL)) {
-            return false;
-        }
-
-        NodeDouble* current = this->head;
-        while(current != NULL) {
-            std::cout << current->getData() << std::endl;
-            current = current->getPrev();
-        }
-    }
-
-    /* Print from the tail */
-    bool printFromTail() {
-        if(((this->head) == NULL) && ((this->head) == NULL)) {
-            return false;
-        }
-
-        NodeDouble* current = this->tail;
-        while(current != NULL) {
-            std::cout << current->getData() << std::endl;
-            current = current->getNext();
-        }
-    }
+    /* Print methods */
+    bool printFromHead();           // print from the head
+    bool printFromTail();           // print from the tail
 };
+
+DLList::DLList() {
+    this->head = NULL;
+    this->tail = NULL;
+}
+
+void DLList::pushFront(int data) {
+    NodeDouble* newNode = new NodeDouble(data);
+    if(((this->head) == NULL)) {
+        this->head = newNode;
+        this->tail = newNode;
+    } else {
+        NodeDouble* headCopy = this->head;
+        newNode->setNext(NULL);
+        newNode->setPrev(this->head);
+        this->head = newNode;
+        headCopy->setNext(newNode);
+    }
+
+}
+
+void DLList::pushBack(int data) {
+    NodeDouble* newNode = new NodeDouble(data);
+    if(((this->tail) == NULL)) {
+        this->head = newNode;
+        this->tail = newNode;
+    } else {
+        NodeDouble* tailCopy = this->tail;
+        newNode->setNext(this->tail);
+        newNode->setPrev(NULL);
+        this->tail = newNode;
+        tailCopy->setPrev(newNode);
+    }
+}
+
+int DLList::popFront() {
+    int data = -1;
+    if((this->head) != NULL) {
+        data = (this->head)->getData();
+        ((this->head)->getPrev())->setNext(NULL);
+        (this->head) = (this->head)->getPrev();
+    }
+    return data;
+}
+
+int DLList::popBack() {
+    int data = -1;
+    if((this->tail) != NULL) {
+        data = (this->tail)->getData();
+        ((this->tail)->getNext())->setPrev(NULL);
+        (this->tail) = (this->tail)->getNext();
+    }
+    return data;
+}
+
+bool DLList::printFromHead() {
+    if(((this->head) == NULL) && ((this->head) == NULL)) {
+        return false;
+    }
+
+    NodeDouble* current = this->head;
+    while(current != NULL) {
+        std::cout << current->getData() << std::endl;
+        current = current->getPrev();
+    }
+}
+
+void DLList::eraseFront() {
+    this->popFront();
+}
+
+void DLList::eraseBack() {
+    this->popBack();
+}
+
+bool DLList::printFromTail() {
+    if(((this->head) == NULL) && ((this->head) == NULL)) {
+        return false;
+    }
+
+    NodeDouble* current = this->tail;
+    while(current != NULL) {
+        std::cout << current->getData() << std::endl;
+        current = current->getNext();
+    }
+}
 
 #endif
