@@ -1,6 +1,4 @@
 # Linked-list
 Implementation of linked list
 
-In the '.h' file there are the implementation of the used classes.
-
-**example_node.cc** and **example_sllist.cc** are two simple examples that use the respectively class.
+There are two version of linked lists, the first is a *singly linked llist* and the second is *double linked list*.
