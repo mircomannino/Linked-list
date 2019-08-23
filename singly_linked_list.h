@@ -48,6 +48,29 @@ public:
         return true;
     }
 
+    /* Erase in a specific position */
+    bool erasePosition(int position) {
+        /* Return if the list is empty */
+        if(this->head == NULL) {
+            return false;
+        }
+        Node* current = this->head;
+        Node* prev = NULL;
+        for(int i = 0; i < position; i++) {
+            if(current == NULL) {
+                return false;   // Position is greater than the size of the list
+            }
+            if(i == (position-1)) {
+                prev = current;
+            }
+            current = current->getNext();
+        }
+        /* Erase the selected element */
+        prev->setNext(current->getNext());
+        delete current;
+        return true;
+    }
+
     /* Print from the head, each node is printed in a new line */
     void print() {
         Node* current = this->head;

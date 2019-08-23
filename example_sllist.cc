@@ -18,10 +18,14 @@ int main() {
     myList.print();
 
     /* Erase test */
-    cout << "\nErase test (10 should be erased):\n";
+    cout << "\nErase test1 (10 should be erased):\n";
     if(!myList.eraseHead()) cout << "List empty - Can not erase the head\n";
     myList.print();
 
+    /* Erase position test */
+    cout << "\nErase test2 (30 should be erased):\n";
+    if(!(myList.erasePosition(1))) cout << "List empty or position not valid - Can not erase the head\n";
+    myList.print();
 
     return 0;
 }
